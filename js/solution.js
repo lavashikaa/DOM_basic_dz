@@ -1,82 +1,95 @@
-let list = document.querySelector('.ulClass').childNodes
-let ul = document.querySelector('.ulClass').attributes
-let li = []
-let sum = 0
-let atr =[]
-let atrName = []
+let list = document.body.querySelector('.ulClass').children;
+
+let sum = 0;
+
+let text = []
+
 for (let con of list){
-    if (con.innerHTML===undefined)continue;
-    li.push(con.innerHTML)
-    sum++
-
-}
-for (let attr of ul){
-    atr.push(attr)
-    atrName.push(attr.value)
+    sum++;
+    text.push(con.innerHTML)
 
 
 }
-console.log("------------------------------------")
-console.log(sum)
-console.log("------------------------------------")
-console.log(li)
-console.log("------------------------------------")
-console.log(atr)
-console.log("------------------------------------")
-console.log(atrName)
-console.log("------------------------------------")
+console.log(sum);
+console.log(text);
 
-document.querySelector('.ulClass').lastChild.innerHTML = "Привект меня зовут Дима"
-document.querySelector('.ulClass').firstChild.setAttribute('data-my-name','Дима')
-document.querySelector('.ulClass').removeAttribute('data-dog-tail')
+let atr = document.body.querySelector(".ulClass").attributes;
 
-function generateList(arr){
-    let ul = document.createElement("ul")
-        document.body.append(ul)
+let attrName = [];
+let attrVal = [];
 
-    for (let i=0;i<=arr.length - 1 ;i++){
-        let li =  document.createElement("li")
+for (let val of atr){
+    attrName.push(val)
+    attrVal.push(val.value)
+
+
+}
+console.log(attrName);
+console.log(attrVal);
+
+
+document.body.querySelector('.ulClass').lastElementChild.innerHTML = "Привет меня зовут Дима"
+
+document.body.querySelector('.ulClass').firstElementChild.setAttribute('data-my-name', 'Дима')
+
+document.body.querySelector('.ulClass').removeAttribute('data-dog-tail')
+
+function generateList(arr,place=document.body){
+    let ul = document.createElement('ul')
+    place.append(ul)
+    for (let i = 0; i <= arr.length - 1 ; i++){
+        let li = document.createElement("li");
+        ul.append(li)
+
         if (Array.isArray(arr[i])){
-            let newChild = ul.appendChild(li)
+            generateList(arr[i],li)
+        }
+        else{
+            li.innerHTML = arr[i]
+        }
 
-            for (let c = 0 ; c <= arr[i].length ; c++){
-                ul.appendChild(li)
-                li.innerHTML = arr[c];
-            }
-        }
-        else {
-            ul.appendChild(li)
-            li.innerHTML = arr[i];
-        }
+
+
     }
 
 }
 
-
-
-
-let array = [1,2,3,[1,2,3],4,5,6]
-
-generateList(atrName)
+let array = [1,2,3,4,5];
 generateList(array)
 
-function table(num1,num2){
+let array2 = [1,2,3,4,5,[1,2,3,4,5,[1,2,3,4,5]],4];
+generateList(array2)
+
+function table(){
     let div = document.createElement('div')
-    document.body.append(div);
-    div.style.display = "flex"
-    div.style.flexWrap = "wrap"
-      let sum = num1 * num2
-    for (let i = 1 ; i <= sum ; i++){
+
+    document.body.append(div)
+    div.style.display = 'flex'
+    div.style.flexWrap = 'wrap'
+    for (let i = 1 ; i <= 100 ; i++){
         let p = document.createElement('p')
-        p.style.width = "10%"
-        p.style.textAlign = "center"
-        p.style.borderStyle = "solid"
-        p.style.borderWidth = "2px"
-        p.style.boxSizing = "border-box"
         div.append(p)
+        p.style.width = '10%'
+        p.style.borderStyle = 'solid'
+        p.style.borderWidth = '2px'
+        p.style.textAlign = 'center'
+        p.style.boxSizing = 'border-box'
         p.innerHTML = i;
+
+
     }
 
+
 }
-table(10,10)
+
+table()
+
+
+
+
+
+
+
+
+
 
