@@ -59,22 +59,25 @@ generateList(array)
 
 let array2 = [1,2,3,4,5,[1,2,3,4,5,[1,2,3,4,5]],4];
 generateList(array2)
-
+let num = 1
 function table(){
-    let div = document.createElement('div')
+    let table = document.createElement('table')
+     table.style.width = '100%'
 
-    document.body.append(div)
-    div.style.display = 'flex'
-    div.style.flexWrap = 'wrap'
-    for (let i = 1 ; i <= 100 ; i++){
-        let p = document.createElement('p')
-        div.append(p)
-        p.style.width = '10%'
-        p.style.borderStyle = 'solid'
-        p.style.borderWidth = '2px'
-        p.style.textAlign = 'center'
-        p.style.boxSizing = 'border-box'
-        p.innerHTML = i;
+
+    document.body.append(table)
+    for (let i = 1 ; i <= 10 ; i++){
+        let tr = document.createElement('tr')
+        table.append(tr)
+
+   for (let c = 1 ; c <= 10 ; c++){
+       let td = document.createElement('td')
+       tr.append(td)
+       td.style.borderStyle = 'solid'
+       td.style.borderWidth = '2px'
+       td.style.textAlign = 'center'
+       td.innerHTML = num++
+   }
 
 
     }
